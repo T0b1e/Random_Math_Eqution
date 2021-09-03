@@ -1,6 +1,8 @@
 import math
+from os import write
 import random
 import time
+import json
 
 
 start_time = time.gmtime()
@@ -17,6 +19,20 @@ def leveling_number(level):
         last_num = 40
     return last_num
     
+"""def username():
+    user_name = input('User name : ')
+
+    return user_name
+
+def put_data(data, filename = 'users.json'):
+    with open (filename,'w') as f:
+        json.dump(data,f,indent=4)
+    
+    with open ('users.json') as json_file:
+        data = json.load(json_file)
+        temp = data['name']
+        temp.append('user')"""
+
 
 def num_1(last_num):#last_num
     if last_num == 1:
@@ -147,7 +163,8 @@ def check_ans(ans):
         print(f'Wong answer, and correct answer is {ans}')
 
         final_point = final_point - 100
-        
+        if final_point <= 0:
+            final_point = 0
     print(final_point)
 
     return final_point
@@ -232,15 +249,12 @@ Time line
 6.Return level
 
 """
-"""
-Error Now
-แต้มไม่เพิ่ม มันเป็น static set ไว้ที่ 0
-can't update point
-can't return level
-
-"""
 #final_time = timer()
+"""data = username()
+put_data(data)"""
+
 level = ranking()
+
 for x in range(1,100): 
     last_number = level
     num1 = num_1(level)
