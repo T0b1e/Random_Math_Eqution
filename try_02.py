@@ -2,8 +2,6 @@ import math
 from os import write
 import random
 import time
-import json
-
 
 start_time = time.gmtime()
 start_timer = start_time[5]
@@ -18,21 +16,25 @@ def leveling_number(level):
     if level == 4:
         last_num = 40
     return last_num
-    
-"""def username():
-    user_name = input('User name : ')
 
+def player():
+    player_count = input('How many player : ')
+    try:
+        final_player = int(player_count)
+        if final_player < 0:
+            print('That was in an list')
+    except ValueError:
+        try:
+            final_v = float(player_count)
+        except ValueError:
+            final_player = str(player_count)
+
+    return final_player
+
+def username(player_count):
+    for x in range(0,player_count):
+        user_name = input('User name : ')
     return user_name
-
-def put_data(data, filename = 'users.json'):
-    with open (filename,'w') as f:
-        json.dump(data,f,indent=4)
-    
-    with open ('users.json') as json_file:
-        data = json.load(json_file)
-        temp = data['name']
-        temp.append('user')"""
-
 
 def num_1(last_num):#last_num
     if last_num == 1:
@@ -88,22 +90,22 @@ def operation(level):#
     return final_op
 
 point = 0 #Static
-def equation(num1,num2,op):
+def equation(no,num1,num2,op):
     
     if op == '+':
-        print(f'Question : {num1} + {num2}')
+        print(f'{no} Question : {num1} + {num2}')
         ans = num1 + num2
     if op == '-':
-        print(f'Question : {num1} - {num2}')
+        print(f'{no} Question : {num1} - {num2}')
         ans = num1 - num2
     if op == '*':
-        print(f'Question : {num1} * {num2}')
+        print(f'{no} Question : {num1} * {num2}')
         ans = num1 * num2
     if op == '/':
         if num2 == 0:
             temp = random.randint(1,num1)
             num2 = temp
-        print(f'Question : {num1} ÷ {num2} (2 digit)')
+        print(f'{no} Question : {num1} ÷ {num2} (2 digit)')
         ans = num1 / num2
         ans = round(ans,2)
 
@@ -111,14 +113,14 @@ def equation(num1,num2,op):
         if num2 >= 5:
             temp = random.randint(2,4)
             num2 = temp
-        print(f'Question : {num1} ^ {num2}')
+        print(f'{no} Question : {num1} ^ {num2}')
         ans = num1 ** num2
         
     if op == 'fac':
         if num1 > 10:
             temp = random.randint(1,10)
             num1 = temp
-        print(f'Question : Factorial {num1}')
+        print(f'{no} Question : Factorial {num1}')
         ans = math.factorial(num1)
     return ans
 
@@ -144,16 +146,14 @@ def check_ans(ans):
     answer = input('ANSWER : ')
     try:
         final_ans = int(answer)
-        if final_ans < 0:
-            print('That was not an answer')
+
         #print("Input is an integer number. Number = ", val)
     except ValueError:
         try:
             final_ans = float(answer)
         except ValueError:
             final_ans = str(answer)
-            
-    
+           
     if final_ans == ans:
         print('You got correct answer')
 
@@ -165,7 +165,7 @@ def check_ans(ans):
         final_point = final_point - 100
         if final_point <= 0:
             final_point = 0
-    print(final_point)
+    print('POINT : ', final_point)
 
     return final_point
 
@@ -180,44 +180,52 @@ def time_count():
         if x == 50:
             print('Time out now')
 
-def timer():
-    clock = 10
-    while clock >= 0:
-        #print(clock)
-        clock -= 1
-        time.sleep(1)
-
-    return clock
-
 def leveling(point):
-    Quotes = (
-    "Do not fear failure but rather fear not trying.'― Roy T. Bennett, The Light in the Heart",
-    "“Great things happen to those who don't stop believing, trying, learning, and being grateful.”",
-    "“A bruise is a lesson... and each lesson makes us better.”",
-    "“The one who falls and gets up is stronger than the one who never tried. Do not fear failure but rather fear not trying.”",
-    "“To learn something new, you need to try new things and not be afraid to be wrong.”")
-    #https://www.goodreads.com/quotes/tag/trying
-
-    if point <= 0:
-        final_quotes = random.choice(Quotes)
-        print(final_quotes)
-    if point < 500:
+   
+    if point < 200:
         level = 0
-    if point == 500:
+    if point >= 200 and point <= 500:
+        level1 = time.gmtime()
+        time_level1 = level1[5]
+        final_time1 = start_timer - time_level1
+
         level = 1
-        print(f'Congratulation you has been {level}')
+        if point >= 200 and point <= 300:
+            print(f'Congratulation you has been {level} at {final_time1} second')
     if point > 500 and point <= 1000:
+        level2 = time.gmtime()
+        time_level2 = level2[5]
+        final_time2 = start_timer - time_level2
+
         level = 2
-        print(f'Congratulation you has been {level}')
+        if point > 500 and point <= 700:
+            print(f'Congratulation you has been {level} at {final_time2} second')
+
     if point > 1000 and point <= 2000:
+        level3 = time.gmtime()
+        time_level3 = level3[5]
+        final_time3 = start_timer - time_level3
+
         level = 3
-        print(f'Congratulation you has been {level}')
+        if point > 1000 and point <= 1300:
+            print(f'Congratulation you has been {level} at {final_time3} second')
+
     if point > 2000 and point <= 3000:
+        level4 = time.gmtime()
+        time_level4 = level4[5]
+        final_time4 = start_timer - time_level4
+
         level = 4
-        print(f'Congratulation you has been {level}')
+        if point > 2000 and point <= 2300:
+            print(f'Congratulation you has been {level} at {final_time4} second')
     if point > 3000 and point <= 4000:
+        level5 = time.gmtime()
+        time_level5 = level5[5]
+        final_time5 = start_timer - time_level5
         level = 5
-        print(f'Congratulation you has been {level}')
+        if point > 3000 and point <= 3200:
+            print(f'Congratulation you has been {level} at {final_time5} second')
+    
     if point == 7000:
         level = 6
         end_time = time.gmtime()
@@ -227,47 +235,38 @@ def leveling(point):
 
     return level
 
-"""def no():
-    for number in range(0,5):
-        final_level = leveling_number(last_level) 
-        final_num1 = num_1(final_level) #Get last number from 
-        final_num2 = num_2(final_level) #Get last number from 
-        ans = equation(final_num1,final_num2,operation()) #Return answer question
-        answer = check_ans(ans) #Return point
-        last_level = leveling(answer) #answer = point
-        #print(answer)
-no()
-
-"""
-""" 5 function
-Time line 
-1.Generate number by check level
-2.Generate Operation by check level
-3.Get Equation by using number and operation from 1,2
-4.Check answer and add point
-5.Check level by using point
-6.Return level
-
-"""
 #final_time = timer()
 """data = username()
 put_data(data)"""
 
+Quotes = (
+    "Do not fear failure but rather fear not trying.'― Roy T. Bennett, The Light in the Heart",
+    "“Great things happen to those who don't stop believing, trying, learning, and being grateful.”",
+    "“A bruise is a lesson... and each lesson makes us better.”",
+    "“The one who falls and gets up is stronger than the one who never tried. Do not fear failure but rather fear not trying.”",
+    "“To learn something new, you need to try new things and not be afraid to be wrong.”")
+    #https://www.goodreads.com/quotes/tag/trying
+
+count = player()
+username(count)
 level = ranking()
 
-for x in range(1,100): 
+
+for x in range(1,20): 
     last_number = level
     num1 = num_1(level)
     num2 = num_2(level)
     op = operation(level) #Return ค่าจาก final_level
-    final_answer = equation(num1,num2,op)
+    final_answer = equation(x,num1,num2,op)
     final_points =  check_ans(final_answer)
     if final_point <= 0:
+        final_quotes = random.choice(Quotes)
+        print(final_quotes)
         print('Game Over !')
         break
 
     if final_point == 7000:
         break
-    LEVEL = leveling(final_points)
-    
+LEVEL = leveling(final_points)
+
 
