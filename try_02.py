@@ -36,37 +36,50 @@ def username(player_count):
         user_name = input('User name : ')
     return user_name
 
-def num_1(last_num):#last_num
-    if last_num == 1:
-        num_1 = random.randint(1,10)
-    if last_num == 2:
-        num_1 = random.randint(1,20)
-    if last_num == 3:
-        num_1 = random.randint(1,30)
-    if last_num == 4:
-        num_1 = random.randint(1,40)
-    if last_num >= 5 and last_num < 8:
-        num_1 = random.randint(1,50)
+def num_1(level):#last_num
+    if level == 1:
+        number_1 = random.randint(1,10)
+    if level == 2:
+        number_1 = random.randint(1,20)
+    if level == 3:
+        number_1 = random.randint(1,30)
+    if level == 4:
+        number_1 = random.randint(1,40)
+    if level >= 5 and level < 8:
+        number_1 = random.randint(1,50)
     if level >= 8:
-        num_1 = random.randint(1,100)
+        number_1 = random.randint(1,100)
     #print(num_1)
-    return num_1
+    return number_1
 
-def num_2(last_num):#
-    if last_num == 1:
-        num_2 = random.randint(1,10)
-    if last_num == 2:
-        num_2 = random.randint(1,20)
-    if last_num == 3:
-        num_2 = random.randint(1,30)
-    if last_num == 4:
-        num_2 = random.randint(1,40)
-    if last_num >= 5 and last_num < 8:
-        num_2 = random.randint(1,50)
-    if level >= 8:
-        num_2 = random.randint(1,100)
-    #print(num_1)
-    return num_2
+def num_2(level):#
+    if level == 1:
+        number_2 = random.randint(1,10)
+    if level == 2:
+        number_2 = random.randint(1,20)
+    if level == 3:
+        number_2 = random.randint(1,30)
+    if level == 4:
+        number_2 = random.randint(1,40)
+    if level >= 5 and level < 8:
+        number_2 = random.randint(1,50)
+    if level >= 8 and level < 9:
+        number_2 = random.randint(1,100)
+        hard_core = random.randint(0,100)
+        if hard_core <= 50:
+            temp = number_2 / 100
+            number_2  = round(temp,2)
+        if hard_core > 50:
+            number_2
+    return number_2
+
+def num_3(level):
+    if level >= 9:
+        number_3 = random.randint(1,100)
+        if number_3 % 2 != 0:
+            number_3 = random.randint(1,100)
+
+    return number_3
 
 def operation(level):#
     operator = ['+','-','*','/','^','fac']
@@ -123,6 +136,17 @@ def equation(no,num1,num2,op):
         print(f'{no} Question : Factorial {num1}')
         ans = math.factorial(num1)
     return ans
+
+def hard_mode(level,no,num1,num2,num3,op):
+    if level >= 9:
+        #2x+1 = 2 , 3 + 1x = 2, 2 + 1 = 2x
+        x_place = random.randint(0,3)
+        if x_place == 0:
+            print(f'{no} Question : {num1}x + {num2} = {num3}')
+        if x_place == 1:
+            print(f'{no} Question : {num1} + {num2}x = {num3}')
+        if x_place == 2:
+            print(f'{no} Question : {num1} + {num2} = {num3}x')
 
 final_point = 0
 def ranking():
@@ -247,12 +271,12 @@ Quotes = (
     "“To learn something new, you need to try new things and not be afraid to be wrong.”")
     #https://www.goodreads.com/quotes/tag/trying
 
-count = player()
-username(count)
+"""count = player()
+username(count)"""
 level = ranking()
 
 
-for x in range(1,20): 
+"""for x in range(1,41): 
     last_number = level
     num1 = num_1(level)
     num2 = num_2(level)
@@ -264,9 +288,15 @@ for x in range(1,20):
         print(final_quotes)
         print('Game Over !')
         break
-
     if final_point == 7000:
         break
-LEVEL = leveling(final_points)
+if x == 20:
+    print('Final Score ',final_point)
 
-
+"""
+level = ranking()
+num1 = num_1(level)
+num2 = num_2(level)
+num3 = num_3(level)
+op = operation(level)
+hard_mode(level,num1,num2,num3,op)
