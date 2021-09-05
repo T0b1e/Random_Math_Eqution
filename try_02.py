@@ -73,12 +73,16 @@ def num_2(level):#
             number_2
     return number_2
 
-def num_3(level):
+def num_3(level,num1,num2):
     if level >= 9:
         number_3 = random.randint(1,100)
-        if number_3 % 2 != 0:
-            number_3 = random.randint(1,100)
-
+        check = num1 * num2
+        if check % 2 == 0: #เลขคู่
+            if number_3 % 2 != 0:
+                number_3 = random.randint(1,100)
+        if check % 2 != 0: #เลขคี่
+            if number_3 % 2 == 0:
+                number_3 = random.randint(1,100)
     return number_3
 
 def operation(level):#
@@ -96,9 +100,13 @@ def operation(level):#
     if level >= 5 and level < 8:
         random_op = random.randint(0,5)
         final_op = (operator[random_op])
-    if level >= 8:
+    if level >= 8 and level < 9:
+        random_op = random.randint(0,3)
+        final_op = (operator[random_op])
+    if level >= 9:
         random_op = random.randint(0,5)
         final_op = (operator[random_op])
+        
     #print(final_op)
     return final_op
 
@@ -141,12 +149,46 @@ def hard_mode(level,no,num1,num2,num3,op):
     if level >= 9:
         #2x+1 = 2 , 3 + 1x = 2, 2 + 1 = 2x
         x_place = random.randint(0,3)
-        if x_place == 0:
-            print(f'{no} Question : {num1}x + {num2} = {num3}')
-        if x_place == 1:
-            print(f'{no} Question : {num1} + {num2}x = {num3}')
-        if x_place == 2:
-            print(f'{no} Question : {num1} + {num2} = {num3}x')
+        if op == '+':
+            if x_place == 0:
+                print(f'{no} Question : {num1}x + {num2} = {num3}')
+                ans = (num3 - num2) / num1
+            if x_place == 1:
+                print(f'{no} Question : {num1} + {num2}x = {num3}')
+                ans = (num3 - num1) / num2
+            if x_place == 2:
+                print(f'{no} Question : {num1} + {num2} = {num3}x')
+                ans = (num1 + num2) / num3
+        if op == '-':
+            if x_place == 0:
+                print(f'{no} Question : {num1}x - {num2} = {num3}')
+                ans = (num3 + num2) / num1
+            if x_place == 1:
+                print(f'{no} Question : {num1} - {num2}x = {num3}')
+                ans = (num3 - num1) / num2
+            if x_place == 2:
+                print(f'{no} Question : {num1} - {num2} = {num3}x')
+                ans = (num1 - num2) / num3
+        if op == '*':
+            if x_place == 0:
+                print(f'{no} Question : {num1}x * {num2} = {num3}')
+                ans = num3 / (num1 * num2)  
+            if x_place == 1:
+                print(f'{no} Question : {num1} * {num2}x = {num3}')
+                ans = num3 / (num1 * num2)  
+            if x_place == 2:
+                print(f'{no} Question : {num1} * {num2} = {num3}x')
+                ans = (num1 * num2) / num3
+        """if op == '/':
+            if x_place == 0:
+                print(f'{no} Question : {num1}x / {num2} = {num3}')
+                ans = (num1 * num2) / num3
+            if x_place == 1:
+                print(f'{no} Question : {num1} / {num2}x = {num3}')
+                ans = (num1 * num2) / num3
+            if x_place == 2:
+                print(f'{no} Question : {num1} / {num2} = {num3}x')
+                ans = (num1 * num2) / num3"""
 
 final_point = 0
 def ranking():
@@ -271,18 +313,18 @@ Quotes = (
     "“To learn something new, you need to try new things and not be afraid to be wrong.”")
     #https://www.goodreads.com/quotes/tag/trying
 
-"""count = player()
-username(count)"""
+count = player()
+username(count)
 level = ranking()
 
-
-"""for x in range(1,41): 
+for x in range(1,41): 
     last_number = level
     num1 = num_1(level)
     num2 = num_2(level)
     op = operation(level) #Return ค่าจาก final_level
     final_answer = equation(x,num1,num2,op)
     final_points =  check_ans(final_answer)
+    leveling(final_points)
     if final_point <= 0:
         final_quotes = random.choice(Quotes)
         print(final_quotes)
@@ -292,11 +334,3 @@ level = ranking()
         break
 if x == 20:
     print('Final Score ',final_point)
-
-"""
-level = ranking()
-num1 = num_1(level)
-num2 = num_2(level)
-num3 = num_3(level)
-op = operation(level)
-hard_mode(level,num1,num2,num3,op)
