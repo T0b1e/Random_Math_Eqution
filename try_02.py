@@ -37,7 +37,7 @@ def username(player_count):
     return user_name
 
 def num_1(level):#last_num
-    if level == 1:
+    if level <= 1:
         number_1 = random.randint(1,10)
     if level == 2:
         number_1 = random.randint(1,20)
@@ -45,15 +45,27 @@ def num_1(level):#last_num
         number_1 = random.randint(1,30)
     if level == 4:
         number_1 = random.randint(1,40)
-    if level >= 5 and level < 8:
+    if level == 5:
         number_1 = random.randint(1,50)
-    if level >= 8:
+    if level == 6:
+        number_1 = random.randint(1,60)
+    if level == 7:
+        number_1 = random.randint(1,70)
+    if level == 8:
+        number_1 = random.randint(1,80)
+    if level == 9:
+        number_1 = random.randint(1,90)
+    if level >= 10:
         number_1 = random.randint(1,100)
+        hard_core = random.randint(0,100)
+        if hard_core <= 50:
+            temp = number_1 / 100
+            number_2  = round(temp,2)
     #print(num_1)
     return number_1
 
 def num_2(level):#
-    if level == 1:
+    if level <= 1:
         number_2 = random.randint(1,10)
     if level == 2:
         number_2 = random.randint(1,20)
@@ -61,40 +73,51 @@ def num_2(level):#
         number_2 = random.randint(1,30)
     if level == 4:
         number_2 = random.randint(1,40)
-    if level >= 5 and level < 8:
+    if level == 5:
         number_2 = random.randint(1,50)
-    if level >= 8 and level < 9:
+    if level == 6:
+        number_2 = random.randint(1,60)
+    if level == 7:
+        number_2 = random.randint(1,70)
+    if level == 8:
+        number_2 = random.randint(1,80)
+    if level == 9:
+        number_2 = random.randint(1,90)
+    if level >= 10:
         number_2 = random.randint(1,100)
         hard_core = random.randint(0,100)
         if hard_core <= 50:
             temp = number_2 / 100
             number_2  = round(temp,2)
-        if hard_core > 50:
-            number_2
+
     return number_2
 
 def num_3(level,num1,num2):
-    if level >= 9:
-        number_3 = random.randint(1,100)
-        check = num1 * num2
-        if check % 2 == 0: #เลขคู่
-            if number_3 % 2 != 0:
-                number_3 = random.randint(1,100)
-        if check % 2 != 0: #เลขคี่
-            if number_3 % 2 == 0:
-                number_3 = random.randint(1,100)
+
+    number_3 = random.randint(1,100)
+    check = num1 * num2
+    if check % 2 == 0: #เลขคู่
+        if number_3 % 2 != 0:
+            number_3 = random.randint(1,100)
+    if check % 2 != 0: #เลขคี่
+        if number_3 % 2 == 0:
+            number_3 = random.randint(1,100)
+
     return number_3
 
 def operation(level):#
     operator = ['+','-','*','/','^','fac']
     
-    if level == 1:
+    if level <= 1:
         random_op = random.randint(0,2)
         final_op = (operator[random_op])
     if level == 2:
         random_op = random.randint(0,3)
         final_op = (operator[random_op])
     if level == 3:
+        random_op = random.randint(0,4)
+        final_op = (operator[random_op])
+    if level == 4:
         random_op = random.randint(0,4)
         final_op = (operator[random_op])
     if level >= 5 and level < 8:
@@ -145,9 +168,8 @@ def equation(no,num1,num2,op):
         ans = math.factorial(num1)
     return ans
 
-def hard_mode(level,no,num1,num2,num3,op):
-    if level >= 9:
-        #2x+1 = 2 , 3 + 1x = 2, 2 + 1 = 2x
+def hard_mode(no,num1,num2,num3,op):
+    #2x+1 = 2 , 3 + 1x = 2, 2 + 1 = 2x
         x_place = random.randint(0,3)
         if op == '+':
             if x_place == 0:
@@ -189,6 +211,8 @@ def hard_mode(level,no,num1,num2,num3,op):
             if x_place == 2:
                 print(f'{no} Question : {num1} / {num2} = {num3}x')
                 ans = (num1 * num2) / num3"""
+
+        return ans
 
 final_point = 0
 def ranking():
@@ -236,69 +260,45 @@ def check_ans(ans):
     return final_point
 
 def time_count():
-    for x in range(1,50):
+    timer = 0
+    for x in range(180):
+        timer = timer + 1
+        #print(timer)
         time.sleep(1)
-        #print(x)
-        if x == 20:
-            print(f'you have {x} left')
-        if x == 40:
-            print(f'you have {x} left')
-        if x == 50:
-            print('Time out now')
+    return timer
 
 def leveling(point):
-   
+    timer = 0
     if point < 200:
         level = 0
     if point >= 200 and point <= 500:
-        level1 = time.gmtime()
-        time_level1 = level1[5]
-        final_time1 = start_timer - time_level1
-
         level = 1
         if point >= 200 and point <= 300:
-            print(f'Congratulation you has been {level} at {final_time1} second')
+            print(f'Congratulation you has been {level} at {timer} second')
     if point > 500 and point <= 1000:
-        level2 = time.gmtime()
-        time_level2 = level2[5]
-        final_time2 = start_timer - time_level2
-
         level = 2
         if point > 500 and point <= 700:
-            print(f'Congratulation you has been {level} at {final_time2} second')
+            print(f'Congratulation you has been {level} at {timer} second')
 
     if point > 1000 and point <= 2000:
-        level3 = time.gmtime()
-        time_level3 = level3[5]
-        final_time3 = start_timer - time_level3
-
         level = 3
         if point > 1000 and point <= 1300:
-            print(f'Congratulation you has been {level} at {final_time3} second')
+            print(f'Congratulation you has been {level} at {timer} second')
 
     if point > 2000 and point <= 3000:
-        level4 = time.gmtime()
-        time_level4 = level4[5]
-        final_time4 = start_timer - time_level4
-
         level = 4
         if point > 2000 and point <= 2300:
-            print(f'Congratulation you has been {level} at {final_time4} second')
+            print(f'Congratulation you has been {level} at {timer} second')
     if point > 3000 and point <= 4000:
-        level5 = time.gmtime()
-        time_level5 = level5[5]
-        final_time5 = start_timer - time_level5
         level = 5
         if point > 3000 and point <= 3200:
-            print(f'Congratulation you has been {level} at {final_time5} second')
+            print(f'Congratulation you has been {level} at {timer} second')
     
     if point == 7000:
         level = 6
-        end_time = time.gmtime()
-        end_timer = end_time[5]
-        final_time = end_timer - start_timer
-        print(f'Congratulation you has been finish game at time {level} at {final_time} second')
+        print(f'Congratulation you has been finish game at time {level} at {timer} second')
 
+    print('LEVEL : ',level)
     return level
 
 #final_time = timer()
@@ -315,16 +315,20 @@ Quotes = (
 
 count = player()
 username(count)
-level = ranking()
+#level = leveling(final_point)
 
-for x in range(1,41): 
-    last_number = level
+for x in range(1,101): 
+    level = leveling(final_point)
     num1 = num_1(level)
     num2 = num_2(level)
+    num3 = num_3(level,num1,num2)
     op = operation(level) #Return ค่าจาก final_level
-    final_answer = equation(x,num1,num2,op)
+    if level < 10:
+        final_answer = equation(x,num1,num2,op)
+    if level >= 10:
+        hard_mode(level,x,num1,num2,num3,op)
+
     final_points =  check_ans(final_answer)
-    leveling(final_points)
     if final_point <= 0:
         final_quotes = random.choice(Quotes)
         print(final_quotes)
