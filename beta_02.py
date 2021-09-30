@@ -2,6 +2,7 @@ import math
 from os import write
 import random
 import time
+import numpy as np
 
 start_time = time.gmtime()
 start_timer = start_time[5]
@@ -155,7 +156,7 @@ def equation(no,num1,num2,op):
 
     if op == '^':
         if num2 >= 5:
-            temp = random.randint(2,4)
+            temp = random.randint(1,2)
             num2 = temp
         print(f'{no} Question : {num1} ^ {num2}')
         ans = num1 ** num2
@@ -214,6 +215,13 @@ def hard_mode(no,num1,num2,num3,op):
 
         return ans
 
+def Matrix():
+    #matrix = [[num]]
+    for x in range(3):
+        num = random.randint(1,20)
+        matrix = [[num,num]]
+    print(matrix)
+    
 final_point = 0
 def ranking():
     your_level =input('Ranking(1-10) : ')
@@ -327,6 +335,8 @@ for x in range(1,101):
         final_answer = equation(x,num1,num2,op)
     if level >= 10:
         hard_mode(level,x,num1,num2,num3,op)
+    if level >= 11:
+        Matrix(num1,num2)
 
     final_points =  check_ans(final_answer)
     if final_point <= 0:
@@ -338,3 +348,6 @@ for x in range(1,101):
         break
 if x == 20:
     print('Final Score ',final_point)
+
+
+#Matrix()
