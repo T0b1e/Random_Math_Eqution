@@ -4,9 +4,6 @@ import random
 import time
 import numpy as np
 
-start_time = time.gmtime()
-start_timer = start_time[5]
-
 def leveling_number(level):
     if level == 1:
         last_num = 10
@@ -147,6 +144,9 @@ def equation(no,num1,num2,op):
         print(f'{no} Question : {num1} * {num2}')
         ans = num1 * num2
     if op == '/':
+        if num2 > 10:
+            temp = random.randint(1,num1)
+            num2 = temp
         if num2 == 0:
             temp = random.randint(1,num1)
             num2 = temp
@@ -202,16 +202,6 @@ def hard_mode(no,num1,num2,num3,op):
             if x_place == 2:
                 print(f'{no} Question : {num1} * {num2} = {num3}x')
                 ans = (num1 * num2) / num3
-        """if op == '/':
-            if x_place == 0:
-                print(f'{no} Question : {num1}x / {num2} = {num3}')
-                ans = (num1 * num2) / num3
-            if x_place == 1:
-                print(f'{no} Question : {num1} / {num2}x = {num3}')
-                ans = (num1 * num2) / num3
-            if x_place == 2:
-                print(f'{no} Question : {num1} / {num2} = {num3}x')
-                ans = (num1 * num2) / num3"""
 
         return ans
 
@@ -282,36 +272,51 @@ def leveling(point):
     if point >= 200 and point <= 500:
         level = 1
         if point >= 200 and point <= 300:
-            print(f'Congratulation you has been {level} at {timer} second')
+            print(f'Congratulation you has been {level}')
     if point > 500 and point <= 1000:
         level = 2
         if point > 500 and point <= 700:
-            print(f'Congratulation you has been {level} at {timer} second')
+            print(f'Congratulation you has been reach {level}')
 
     if point > 1000 and point <= 2000:
         level = 3
         if point > 1000 and point <= 1300:
-            print(f'Congratulation you has been {level} at {timer} second')
+            print(f'Congratulation you has been reach {level}')
 
     if point > 2000 and point <= 3000:
         level = 4
         if point > 2000 and point <= 2300:
-            print(f'Congratulation you has been {level} at {timer} second')
+            print(f'Congratulation you has been reach {level}')
     if point > 3000 and point <= 4000:
         level = 5
         if point > 3000 and point <= 3200:
-            print(f'Congratulation you has been {level} at {timer} second')
-    
-    if point == 7000:
+            print(f'Congratulation you has been reach {level}')
+    if point > 4000 and point <= 5000:
         level = 6
-        print(f'Congratulation you has been finish game at time {level} at {timer} second')
+        if point > 4000 and point <= 4200:
+            print(f'Congratulation you has been reach {level}')
+    if point > 5000 and point <= 6000:
+        level = 6
+        if point > 5000 and point <= 5200:
+            print(f'Congratulation you has been reach {level}')
+    if point > 6000 and point <= 7000:
+        level = 7
+        if point > 6000 and point <= 6200:
+            print(f'Congratulation you has been reach {level}')
+    if point > 7000 and point <= 8000:
+        level = 8
+        if point > 3000 and point <= 3200:
+            print(f'Congratulation you has been reach {level}')
+    if point > 8000 and point <= 9000:
+        level = 9
+        if point > 9000 and point <= 10000:
+            print(f'Congratulation you has been reach {level}')
+    if point > 10000:
+        level = 10
+        print(f'Congratulation you has been finish game at time {level}')
 
     print('LEVEL : ',level)
     return level
-
-#final_time = timer()
-"""data = username()
-put_data(data)"""
 
 Quotes = (
     "Do not fear failure but rather fear not trying.'― Roy T. Bennett, The Light in the Heart",
